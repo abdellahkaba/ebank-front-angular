@@ -9,3 +9,6 @@ ng g c navbar
 ng g c customers
 Configuration de systeme de routage
 router-outlet : permet de generer le rendu d'un composant
+#Pour interagir avec la partie backend :
+  on utilise le module HttpClientModule
+  on l'inject aussi au niveau de constructeur
