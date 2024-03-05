@@ -1,0 +1,11 @@
+# Installation
+ng new front-app --no-standalone --routing --ssr=false
+# execution
+ng serve
+# Installation des libraries
+npm install --save bootstrap
+npm install --save bootstrap-icons
+ng g c navbar
+ng g c customers
+Configuration de systeme de routage
+router-outlet : permet de generer le rendu d'un composant
