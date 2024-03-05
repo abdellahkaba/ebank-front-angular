@@ -36,4 +36,12 @@ export class AccountsComponent implements OnInit{
     let accountId : string = this.accountFormGroup.value.accountId
     this.accountObservable = this.accountService.getAccount(accountId,this.currentPage,this.pageSize)
   }
+
+  gotoPage(page: number) {
+    this.currentPage = page
+    /**
+     * On recharge le compte
+     */
+    this.handleSearchAccount()
+  }
 }
