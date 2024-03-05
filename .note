@@ -12,3 +12,6 @@ router-outlet : permet de generer le rendu d'un composant
 #Pour interagir avec la partie backend :
   on utilise le module HttpClientModule
   on l'inject aussi au niveau de constructeur
+
+#Generation de service
+  ng g s services/customer
