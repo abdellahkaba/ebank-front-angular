@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {CustomerService} from "../services/customer.service";
 import {catchError, Observable, throwError} from "rxjs";
 import {Customer} from "../model/cusotomer.model";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-customers',
@@ -12,19 +12,29 @@ import {Customer} from "../model/cusotomer.model";
 export class CustomersComponent implements OnInit{
   customers! : Observable<Array<Customer>>
   errorMessage!: string
+  searchformGroup! : FormGroup  // on injdecte le service formBuilder
+
 
   /**
    * On injecte le service CustomerService
    * @param customerService
    */
 
-  constructor(private customerService : CustomerService) {
+  constructor(private customerService : CustomerService, private fb : FormBuilder) {
   }
   ngOnInit(): void {
-    this.customers = this.customerService.getCustomers().pipe(
+    this.searchformGroup = this.fb.group({
+      keyword : this.fb.control("")
+    })
+    this.handleSearchCustomer()
+  }
+
+  handleSearchCustomer() {
+    let key = this.searchformGroup?.value.keyword
+    this.customers = this.customerService.searchCustomers(key).pipe(
       catchError(err => {
         this.errorMessage = err.message
-       return throwError(err)
+        return throwError(err)
       })
     )
   }
