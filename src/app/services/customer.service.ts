@@ -21,4 +21,10 @@ export class CustomerService {
     //On serialize le resultat de la request dans un tableau de customer
     return this.http.get<Array<Customer>>(environment.BACKENDHOST+"/customers/search?keyword="+keyword)
   }
+
+  //une methode qui ajoute un produit
+  public addNewCustomer(customer: Customer) : Observable<Customer>{
+    return this.http.post<Customer>(environment.BACKENDHOST+"/customers",customer) ;
+
+  }
 }
