@@ -19,3 +19,4 @@ router-outlet : permet de generer le rendu d'un composant
   ng generate environments
 #Formulaire customer
   ng g c new-customer
+# json to typscript : quicktype
