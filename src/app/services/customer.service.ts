@@ -22,9 +22,22 @@ export class CustomerService {
     return this.http.get<Array<Customer>>(environment.BACKENDHOST+"/customers/search?keyword="+keyword)
   }
 
-  //une methode qui ajoute un produit
+  /**
+   * Une methode qui ajoute un customer
+   * @param customer
+   */
   public addNewCustomer(customer: Customer) : Observable<Customer>{
     return this.http.post<Customer>(environment.BACKENDHOST+"/customers",customer) ;
 
   }
+
+  /**
+   * Une methode qui supprime un customer
+   * @param id
+   */
+  public delete(id : number){
+    return this.http.delete(environment.BACKENDHOST+"/customers/"+id) ;
+
+  }
+
 }

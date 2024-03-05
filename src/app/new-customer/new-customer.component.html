@@ -7,12 +7,20 @@
         <div class="mb-3">
           <label class="form-label">Name:</label>
           <input type="text" formControlName="name" class="form-control">
+          <small *ngIf="newCustomerFormGroup.controls['name'].errors &&
+          newCustomerFormGroup.controls['name'].touched && newCustomerFormGroup.controls['name'].errors!['required']" class="text-danger">
+              Veuillez saisir le nom
+          </small>
         </div>
         <div class="mb-3">
           <label class="form-label">Email:</label>
           <input type="text" formControlName="email" class="form-control">
+          <small *ngIf="newCustomerFormGroup.controls['email'].errors &&
+          newCustomerFormGroup.controls['email'].touched && newCustomerFormGroup.controls['email'].errors!['email']" class="text-danger">
+            Email non valide
+          </small>
         </div>
-        <button  class="btn btn-info text-white">Submit</button>
+        <button [disabled]="newCustomerFormGroup.invalid"  class="btn btn-info text-white">Submit</button>
       </form>
     </div>
   </div>
