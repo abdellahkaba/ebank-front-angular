@@ -17,5 +17,34 @@ export class AccountsService implements OnInit{
     return this.http.get<AccountDetails>("http://localhost:8085/accounts/"+accountId+"/pageOperations?page="+page+"&size="+size)
   }
 
+  /**
+   * Methode de service de debit
+   * @param accountId
+   * @param page
+   * @param size
+   */
+  public debit(accountId : string, amount : number, description : string ) {
+    let data = {
+      accountId : accountId,
+      amount : amount,
+      description : description}
+    return this.http.post("http://localhost:8085/accounts/debit", data)
+  }
 
+  public credit(accountId : string, amount : number, description : string ) {
+    let data = {
+      accountId : accountId,
+      amount : amount,
+      description : description}
+    return this.http.post("http://localhost:8085/accounts/credit", data)
+  }
+
+  public transfert(accountSource : string, accountDestination : string, amount : number, description : string ) {
+    let data = {
+      accountSource : accountSource,
+      accountDestination : accountDestination,
+      amount : amount,
+      description : description}
+    return this.http.post("http://localhost:8085/accounts/transfert", data)
+  }
 }

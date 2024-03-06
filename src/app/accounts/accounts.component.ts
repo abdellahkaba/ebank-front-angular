@@ -14,6 +14,7 @@ export class AccountsComponent implements OnInit{
   currentPage : number = 0
   pageSize : number = 5
   accountObservable! : Observable<AccountDetails>
+  operationFormGroup! : FormGroup
 
   /**
    * Injection de formBuilder
@@ -25,11 +26,18 @@ export class AccountsComponent implements OnInit{
   }
   ngOnInit(): void {
     /**
-     * On genere notre formulaire
+     * On genere notre formulaire de Compte et operation
      */
     this.accountFormGroup = this.fb.group({
       accountId : this.fb.control("")
     })
+    this.operationFormGroup = this.fb.group({
+      operationType : this.fb.control(null),
+      amount : this.fb.control(0),
+      description : this.fb.control(null),
+      accountDestination : this.fb.control(null)
+    })
+
   }
 
   handleSearchAccount() {
@@ -43,5 +51,49 @@ export class AccountsComponent implements OnInit{
      * On recharge le compte
      */
     this.handleSearchAccount()
+  }
+
+  handleAccountOperation() {
+    let accountId : string = this.accountFormGroup.value['accountId']
+    let operationType = this.operationFormGroup.value['operationType']
+    let amount :  number = this.operationFormGroup.value['amount']
+    let description : string = this.operationFormGroup.value['description']
+    let accountDestination : string = this.operationFormGroup.value['accountDestination']
+    let accountSource : string = this.operationFormGroup.value['accountSource']
+    if (operationType == 'DEBIT'){
+        this.accountService.debit(accountId, amount, description).subscribe({
+          next : (data) => {
+            alert("Operation de debit reussie !")
+            this.operationFormGroup.reset()
+            this.handleSearchAccount()
+          },
+          error : (err) => {
+            console.log(err)
+          }
+        })
+    }else if (operationType == 'CREDIT'){
+      this.accountService.credit(accountId, amount, description).subscribe({
+        next : (data) => {
+          alert("Operation de credit reussie !")
+          this.operationFormGroup.reset()
+          this.handleSearchAccount()
+        },
+        error : (err) => {
+          console.log(err)
+        }
+      })
+    }else if (operationType == 'TRANSFERT'){
+      this.accountService.transfert(accountId, accountDestination, amount,description).subscribe({
+        next : (data) => {
+          alert("Operation de tranfert reussie !")
+          this.operationFormGroup.reset()
+          this.handleSearchAccount()
+        },
+        error : (err) => {
+          console.log(err)
+        }
+      })
+    }
+
   }
 }
