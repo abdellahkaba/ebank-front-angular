@@ -14,7 +14,18 @@
               </button>
             </div>
           </form>
-          <ng-container *ngIf="accountObservable | async as accountDetails">
+          <ng-template #errorTemplate>
+            <ng-container *ngIf="errorMessage ; else loading">
+              <div class="text-danger">
+                {{errorMessage}}
+              </div>
+            </ng-container>
+            <ng-template #loading>
+              Chargememt .....
+            </ng-template>
+          </ng-template>
+          <ng-container *ngIf="accountObservable | async as accountDetails; ">
+<!--            else errorTemplate-->
             <hr>
             <div class="mb-2">
               <label>Compte Id :</label>

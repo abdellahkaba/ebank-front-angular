@@ -20,3 +20,8 @@ router-outlet : permet de generer le rendu d'un composant
 #Formulaire customer
   ng g c new-customer
 # json to typscript : quicktype
+
+#Generate customers accounts
+  ng g c customer-accounts
+#Passage de parametre a partir d'une route entre les composants
+#on ajoute une methode findbyCustomer
