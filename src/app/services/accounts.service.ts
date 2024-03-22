@@ -14,7 +14,7 @@ export class AccountsService implements OnInit{
   }
 
   public getAccount(accountId : string, page : number, size : number ) : Observable<AccountDetails> {
-    return this.http.get<AccountDetails>("http://localhost:8085/accounts/"+accountId+"/pageOperations?page="+page+"&size="+size)
+    return this.http.get<AccountDetails>("http://localhost:8087/accounts/"+accountId+"/pageOperations?page="+page+"&size="+size)
   }
 
   /**
@@ -28,7 +28,7 @@ export class AccountsService implements OnInit{
       accountId : accountId,
       amount : amount,
       description : description}
-    return this.http.post("http://localhost:8085/accounts/debit", data)
+    return this.http.post("http://localhost:8087/accounts/debit", data)
   }
 
   public credit(accountId : string, amount : number, description : string ) {
@@ -36,7 +36,7 @@ export class AccountsService implements OnInit{
       accountId : accountId,
       amount : amount,
       description : description}
-    return this.http.post("http://localhost:8085/accounts/credit", data)
+    return this.http.post("http://localhost:8087/accounts/credit", data)
   }
 
   public transfert(accountSource : string, accountDestination : string, amount : number, description : string ) {
@@ -45,6 +45,6 @@ export class AccountsService implements OnInit{
       accountDestination : accountDestination,
       amount : amount,
       description : description}
-    return this.http.post("http://localhost:8085/accounts/transfert", data)
+    return this.http.post("http://localhost:8087/accounts/transfert", data)
   }
 }
