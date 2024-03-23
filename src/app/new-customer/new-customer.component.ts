@@ -36,7 +36,7 @@ export class NewCustomerComponent implements OnInit{
       next : data=> {
         alert("Client ajouté avec success")
        // this.newCustomerFormGroup.reset()
-        this.router.navigateByUrl("/customers")
+        this.router.navigateByUrl("/admin/customers")
       },
       error : err => {
         console.log(err)
