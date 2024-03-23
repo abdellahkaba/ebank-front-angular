@@ -24,17 +24,19 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" *ngIf="authService.isAuthenticated">
         <li>
           <a class="nav-link">
-<!--            {{authService.authenticatedUser!.username}}-->
+
+         {{this.authService.username}}
           </a>
         </li>
-<!--        <li>-->
+        <li>
 <!--          <a class="btn nav-link" (click)="handleLogout()">-->
 <!--            <i class="bi bi-box-arrow-right"></i>-->
 <!--          </a>-->
-<!--        </li>-->
+          <button (click)="handleLogout()" class="btn btn-success">Logout</button>
+        </li>
       </ul>
     </div>
   </div>

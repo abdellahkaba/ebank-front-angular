@@ -10,7 +10,7 @@ export class AuthService {
   isAuthenticated : boolean = false
   roles : any
   username : any
-  accessToken! : string
+  accessToken! : any
 
 
   constructor(private http : HttpClient) { }
@@ -37,5 +37,11 @@ export class AuthService {
     //On recupere le role
     this.username = jwtDecoder.sub
     this.roles = jwtDecoder.scope
+  }
+
+  logout()  {
+    this.isAuthenticated= false ;
+    this.accessToken = undefined
+    this.roles = undefined
   }
 }
