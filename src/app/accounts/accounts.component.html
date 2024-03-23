@@ -68,7 +68,7 @@
     <div class="col col-md-6">
         <div class="card" *ngIf="accountObservable" >
           <div class="card-header">Les operations</div>
-          <div class="card-body">
+          <div class="card-body" *ngIf="authService.roles.includes('ADMIN')">
 <!--           {{operationFormGroup.value | json}}-->
             <form [formGroup]="operationFormGroup" (ngSubmit)="handleAccountOperation()">
               <div class="form-check-inline">
