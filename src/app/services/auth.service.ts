@@ -46,6 +46,8 @@ export class AuthService {
     this.isAuthenticated= false ;
     this.accessToken = undefined
     this.roles = undefined
+    window.localStorage.removeItem("access-token")
+    this.router.navigateByUrl("/login")
   }
 
   loadJwtTokenFromLocalStorage() {
